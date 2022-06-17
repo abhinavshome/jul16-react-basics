@@ -1,0 +1,15 @@
+.tab-headers span {
+  color: black;
+  width: 100px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.selected {
+  background-color: red;
+  color: white !important;
+}
+
+.hidden {
+  display: none;
+}
