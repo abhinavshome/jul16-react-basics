@@ -6,6 +6,8 @@ import Counter from "./Counter";
 import reportWebVitals from "./reportWebVitals";
 import OnOfSwitch from "./OnOfSwitch";
 import Tabs from "./Tabs";
+import ContactList from "./ContactList";
+import MoveDot from "./MoveDot";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,6 +16,10 @@ root.render(
     <OnOfSwitch />
     <hr />
     <Tabs />
+    <hr />
+    <ContactList />
+    <hr />
+    <MoveDot />
   </>
 
   // <React.StrictMode>
