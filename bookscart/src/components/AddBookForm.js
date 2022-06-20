@@ -1,16 +1,43 @@
+import { useState } from "react";
+
 const AddBookForm = ({ onAddBook }) => {
+  const [error, setError] = useState("");
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const title = e.target.elements.title.value;
+    const author = e.target.elements.author.value;
+    const price = e.target.elements.price.value;
+    const rating = e.target.elements.rating.value;
+
+    if (!title) {
+      setError("Title has to be there");
+      return;
+    }
+
+    if (!author) {
+      setError("Author has to be there");
+      return;
+    }
+
+    if (!price) {
+      setError("price has to be there");
+      return;
+    }
+
+    setError("");
+
     const newBook = {
-      title: e.target.elements.title.value,
-      author: e.target.elements.author.value,
-      price: e.target.elements.price.value,
-      rating: e.target.elements.rating.value,
+      title: title,
+      author: author,
+      price: price,
+      rating: rating,
     };
     onAddBook(newBook);
   };
   return (
     <div>
+      <div style={{ color: "red" }}>{error}</div>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Title</label>

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import AddBookForm from "./AddBookForm";
 import Book from "./Book";
+import Cart from "./Cart";
+import Filters from "./Filters";
 
 const BookList = () => {
   const [books, setBooks] = useState([
@@ -33,6 +35,14 @@ const BookList = () => {
       rating: 1,
     },
   ]);
+  const [cart, setCart] = useState({
+    items: [],
+    totalPrice: 0,
+  });
+  const [filters, setFilters] = useState({
+    topRated: false,
+    lessThan20: false,
+  });
 
   const rateUp = (bookId) => {
     const newBooks = [...books];
@@ -60,9 +70,38 @@ const BookList = () => {
     setBooks(newBooks);
   };
 
+  const addToCart = (book) => {
+    const newCart = { ...cart };
+    let item = cart.items.find((i) => i.itemId === book.id);
+    if (item) {
+      item.qty++;
+    } else {
+      item = {
+        itemId: book.id,
+        name: book.title,
+        qty: 1,
+        price: book.price,
+      };
+      newCart.items.push(item);
+    }
+
+    newCart.totalPrice += book.price;
+    setCart(newCart);
+  };
+
+  const toggleFilter = (filterName) => {
+    const newFilters = { ...filters };
+    newFilters[filterName] = !newFilters[filterName];
+    setFilters(newFilters);
+  };
+
   return (
     <div>
       <AddBookForm onAddBook={addBook} />
+      <hr />
+      <Cart cart={cart} />
+      <hr />
+      <Filters filters={filters} onFilterToggle={toggleFilter} />
       <hr />
       {books.map((book) => (
         <Book
@@ -70,6 +109,8 @@ const BookList = () => {
           book={book}
           onRateUp={rateUp}
           onRateDown={rateDown}
+          onAddToCart={addToCart}
+          filters={filters}
         />
       ))}
     </div>
