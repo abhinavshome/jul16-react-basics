@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Filters = ({ filters, onFilterToggle }) => {
-  const [rating, setRating] = useState(1);
+  const [rating, setRating] = useState(3);
   return (
     <div>
       <button
