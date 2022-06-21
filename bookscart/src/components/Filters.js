@@ -1,4 +1,7 @@
+import { useState } from "react";
+
 const Filters = ({ filters, onFilterToggle }) => {
+  const [rating, setRating] = useState(1);
   return (
     <div>
       <button
@@ -13,6 +16,14 @@ const Filters = ({ filters, onFilterToggle }) => {
       >
         show less than 20rs
       </button>
+      <select value={rating} onChange={(e) => setRating(e.target.value)}>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+      {rating}
     </div>
   );
 };
