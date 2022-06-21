@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddBookForm = ({ onAddBook }) => {
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,6 +36,7 @@ const AddBookForm = ({ onAddBook }) => {
       rating: rating,
     };
     onAddBook(newBook);
+    navigate("/");
   };
   return (
     <div>

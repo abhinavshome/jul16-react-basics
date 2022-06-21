@@ -3,6 +3,8 @@ import AddBookForm from "./AddBookForm";
 import Book from "./Book";
 import Cart from "./Cart";
 import Filters from "./Filters";
+import { BrowserRouter, Routes, Route, Link, NavLink } from "react-router-dom";
+import BookDetail from "./BookDetail";
 
 const BookList = () => {
   const [books, setBooks] = useState([
@@ -38,6 +40,7 @@ const BookList = () => {
   const [cart, setCart] = useState({
     items: [],
     totalPrice: 0,
+    totalQty: 0,
   });
   const [filters, setFilters] = useState({
     topRated: false,
@@ -86,6 +89,7 @@ const BookList = () => {
     }
 
     newCart.totalPrice += book.price;
+    newCart.totalQty++;
     setCart(newCart);
   };
 
@@ -97,22 +101,44 @@ const BookList = () => {
 
   return (
     <div>
-      <AddBookForm onAddBook={addBook} />
-      <hr />
-      <Cart cart={cart} />
-      <hr />
-      <Filters filters={filters} onFilterToggle={toggleFilter} />
-      <hr />
-      {books.map((book) => (
-        <Book
-          key={book.id}
-          book={book}
-          onRateUp={rateUp}
-          onRateDown={rateDown}
-          onAddToCart={addToCart}
-          filters={filters}
-        />
-      ))}
+      <BrowserRouter>
+        <div className="menu">
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/cart">Cart({cart.totalQty})</NavLink>
+          <NavLink to="/add-book">Add Book</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
+        </div>
+        <hr />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Filters filters={filters} onFilterToggle={toggleFilter} />
+                {books.map((book) => (
+                  <Book
+                    key={book.id}
+                    book={book}
+                    onRateUp={rateUp}
+                    onRateDown={rateDown}
+                    onAddToCart={addToCart}
+                    filters={filters}
+                  />
+                ))}
+              </>
+            }
+          />
+          <Route path="/cart" element={<Cart cart={cart} />} />
+          <Route
+            path="/add-book"
+            element={<AddBookForm onAddBook={addBook} />}
+          />
+          <Route path="/about" element={<h1>About Us</h1>} />
+          <Route path="/contact" element={<h1>Contact Us</h1>} />
+          <Route path="/book/:bookId" element={<BookDetail books={books} />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 };
