@@ -3,7 +3,7 @@ const todoReducer = (state = [], action) => {
     case "ADD_TODO":
       return state.concat(action.payload);
     case "REMOVE_TODO":
-      return state.filter((todo) => todo !== action.payload);
+      return state.filter((todo) => todo.label !== action.payload);
     default:
       return state;
   }
