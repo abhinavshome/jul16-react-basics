@@ -1,11 +1,20 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Todo from "./Todo";
 
 const TodoList = () => {
   const [newTodo, setNewTodo] = useState("");
-  const [assginee, setAssignee] = useState("");
+  const [assignee, setAssignee] = useState("");
   const [status, setStatus] = useState("NOT DONE");
   const todos = useSelector((state) => state.todos);
+  const filters = useSelector((state) => state.filters);
+
+  const filteredTodos = todos.filter(
+    (t) =>
+      (t.status === filters.status || filters.status === "ALL") &&
+      (t.assignee === filters.assignee || filters.assignee === "ANY")
+  );
+
   const dispatch = useDispatch();
   return (
     <div>
@@ -17,7 +26,7 @@ const TodoList = () => {
         />
         <input
           type="text"
-          value={assginee}
+          value={assignee}
           onChange={(e) => setAssignee(e.target.value)}
         />
         <select value={status} onChange={(e) => setStatus(e.target.value)}>
@@ -31,7 +40,7 @@ const TodoList = () => {
               type: "ADD_TODO",
               payload: {
                 label: newTodo,
-                assginee: assginee,
+                assignee: assignee,
                 status: status,
               },
             });
@@ -43,17 +52,8 @@ const TodoList = () => {
         </button>
       </div>
       <div>
-        {todos.map((todo) => (
-          <div>
-            {todo.label} || {todo.assginee} || {todo.status}
-            <button
-              onClick={() =>
-                dispatch({ type: "REMOVE_TODO", payload: todo.label })
-              }
-            >
-              X
-            </button>
-          </div>
+        {filteredTodos.map((todo) => (
+          <Todo todo={todo} />
         ))}
       </div>
     </div>

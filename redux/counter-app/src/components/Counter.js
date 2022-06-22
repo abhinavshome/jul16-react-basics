@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { counterSelector } from "./redux/selectors";
+import { counterSelector } from "../redux/selectors";
 // import store from "./redux/store";
 
 // useSelector is something like this
