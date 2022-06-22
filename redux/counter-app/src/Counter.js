@@ -1,8 +1,17 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { counterSelector } from "./redux/selectors";
+import store from "./redux/store";
+
+// useSelector is something like this
+// const useSelector = (f) => {
+//   const state = store.getState();
+//   const r= f(state);
+//   return r
+// };
 
 const Counter = () => {
-  const counter = useSelector((state) => state);
+  const counter = useSelector(counterSelector);
   const dispatch = useDispatch();
 
   const [incBy, setIncBy] = useState(0);
