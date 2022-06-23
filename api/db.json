@@ -1,0 +1,52 @@
+{
+  "books": [
+    {
+      "id": 1,
+      "title": "The Alchemist",
+      "price": 22,
+      "author": "Paulo Cohelo",
+      "rating": 2
+    },
+    {
+      "id": 2,
+      "title": "Monk Who Sold his ferrari",
+      "price": 12,
+      "author": "Robin Sharma",
+      "rating": 3
+    },
+    {
+      "id": 3,
+      "title": "Power of Now",
+      "price": 34,
+      "author": "Eckhart Tolle",
+      "rating": 5
+    },
+    {
+      "id": 4,
+      "title": "Five point someone",
+      "price": 11,
+      "author": "Chetan Bhagat",
+      "rating": 1
+    }
+  ],
+  "todos": [
+    {
+      "id": 1,
+      "label": "Bring Milk",
+      "done": false,
+      "assignee": "Abhinav"
+    },
+    {
+      "label": "Clean House",
+      "assignee": "Manoj",
+      "done": false,
+      "id": 2
+    },
+    {
+      "label": "Pay bill",
+      "assignee": "Abhinav",
+      "done": false,
+      "id": 3
+    }
+  ]
+}
