@@ -27,6 +27,12 @@
       "price": 11,
       "author": "Chetan Bhagat",
       "rating": 1
+    },
+    {
+      "label": "Get hair cut",
+      "assignee": "Rahul",
+      "done": false,
+      "id": 5
     }
   ],
   "todos": [
@@ -37,16 +43,16 @@
       "assignee": "Abhinav"
     },
     {
-      "label": "Clean House",
-      "assignee": "Manoj",
-      "done": false,
-      "id": 2
-    },
-    {
       "label": "Pay bill",
       "assignee": "Abhinav",
       "done": false,
       "id": 3
+    },
+    {
+      "label": "CLean house",
+      "assignee": "Ramesh",
+      "done": false,
+      "id": 4
     }
   ]
 }

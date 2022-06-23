@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { loadTodos } from "../api";
+import SearchBar from "./SearchBar";
 import TodoAddForm from "./TodoAddForm";
 import TodoList from "./TodoList";
 
@@ -23,6 +24,9 @@ const TodoApp = () => {
   return (
     <div>
       <TodoAddForm />
+      <hr />
+      <SearchBar />
+      <hr />
       <TodoList />
     </div>
   );
